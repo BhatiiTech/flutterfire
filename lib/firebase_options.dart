@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -40,21 +37,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAAZ7NJ-KIMqFtqF6arQRpPfizRbeDlw1g',
-    appId: '1:995917499771:android:9e54112ce90bc2ddf901de',
-    messagingSenderId: '995917499771',
-    projectId: 'fir-series-aac24',
-    storageBucket: 'fir-series-aac24.appspot.com',
+    apiKey: 'AIzaSyDbtTYViQ2x8dpyBnrLrBBhlfAf_PP9dJU',
+    appId: '1:842186803163:android:07c97976acb43c9e5649fe',
+    messagingSenderId: '842186803163',
+    projectId: 'deali2',
+    storageBucket: 'deali2.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCk21V0PA8z3bCWDHLXHHG2i5IUf5B3vdM',
-    appId: '1:995917499771:ios:50639af076d49fb7f901de',
-    messagingSenderId: '995917499771',
-    projectId: 'fir-series-aac24',
-    storageBucket: 'fir-series-aac24.appspot.com',
-    androidClientId: '995917499771-0tastkpjhil9d0gdjj6tphj0b5eh149r.apps.googleusercontent.com',
-    iosClientId: '995917499771-se9mlesi78un9nr758odm95sbh0aqafm.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAmbqp3x8c-harV07De0gD3LBN2TRU2faU',
+    appId: '1:842186803163:ios:5575b4fef4fe12ae5649fe',
+    messagingSenderId: '842186803163',
+    projectId: 'deali2',
+    storageBucket: 'deali2.appspot.com',
     iosBundleId: 'com.slantcode.firebaseseries',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyC6juzRQHiDimUYEM8wVBt81h7qjdioJgw',
+    appId: '1:842186803163:web:5b903ddd5a384d905649fe',
+    messagingSenderId: '842186803163',
+    projectId: 'deali2',
+    authDomain: 'deali2.firebaseapp.com',
+    storageBucket: 'deali2.appspot.com',
+    measurementId: 'G-QEX9JXNEEQ',
+  );
+
 }

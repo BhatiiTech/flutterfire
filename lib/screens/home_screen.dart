@@ -41,13 +41,15 @@ class _HomeScreenState extends State<HomeScreen> {
     String email = emailController.text.trim();
     String ageString = ageController.text.trim();
 
-    int age = int.parse(ageString);
+    int age = int.parse(ageString); // when age is integer then string age convert to int
     
     nameController.clear();
     emailController.clear();
     ageController.clear();
+    // yaha clear() funtion are  clear texfield
 
     if(name != "" && email != "" && profilepic != null) {
+      // if name and email anyone is empty
       
       UploadTask uploadTask = FirebaseStorage.instance.ref().child("profilepictures").child(Uuid().v1()).putFile(profilepic!);
 
@@ -69,7 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
         "profilepic": downloadUrl,
         "samplearray": [name, email, age]
       };
-      FirebaseFirestore.instance.collection("users").add(userData);
+      // map all data are store in userData
+      FirebaseFirestore.instance.collection("users").add(userData); // map data store in database
       log("User created!");
     }
     else{ 
@@ -209,26 +212,35 @@ class _HomeScreenState extends State<HomeScreen> {
 
               StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance.collection("users").where("age", isGreaterThanOrEqualTo: 19).orderBy("age", descending: true).snapshots(),
+                // yaha per stream is a realtime data fetch featrure provide kara ta ha
+                //
                 builder: (context, snapshot) {
 
                   if(snapshot.connectionState == ConnectionState.active) {
+                    // connection check karne ke liya
                     if(snapshot.hasData && snapshot.data != null) {
+                      // If snapshot data are available
                       return Expanded(
                         child: ListView.builder(
                           itemCount: snapshot.data!.docs.length,
+                          // itemCount ke ader document ki lenght store ki jati ha
                           itemBuilder: (context, index) {
 
                             Map<String, dynamic> userMap = snapshot.data!.docs[index].data() as Map<String, dynamic>;
+                            // yaha per data ke bad ! ka matalab ha ki  data null bhi ho saakta ha
+                            // dyanamic se map data holding limit less ho jayati ha
+
 
                             return ListTile(
                               leading: CircleAvatar(
                                 backgroundImage: NetworkImage(userMap["profilepic"]),
                               ),
                               title: Text(userMap["name"] + " (${userMap["age"]})"),
+                              // yaha per firebase se name
                               subtitle: Text(userMap["email"]),
                               trailing: IconButton(
                                 onPressed: () {
-                                  // Delete 
+                                  // here delete fuction writen
                                 },
                                 icon: Icon(Icons.delete),
                               ),
@@ -244,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                   else {
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(),// if connection at time not stablish center show progerss bar
                     );
                   }
 

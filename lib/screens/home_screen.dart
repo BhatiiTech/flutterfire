@@ -243,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   // here delete fuction writen
                                 },
                                 icon: Icon(Icons.delete),
-                              ),
+                               ),
                             );
 
                           },
